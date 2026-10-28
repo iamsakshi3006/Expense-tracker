@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spendwise | Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header class="navbar">
+        <a href="#" class="logo">SpendWise<span>.</span></a>
+    <button id="themeToggle" class="theme-btn" type="button">
+      🌙 Dark Mode
+    </button>
+  </header>
+
+  <main class="container">
+    <section class="welcome">
+      <p class="eyebrow">PERSONAL FINANCE</p>
+      <h1>Expense Tracker</h1>
+      <p>Track your spending. Make smarter decisions.</p>
+    </section>
+
+    <section class="summary-grid" aria-label="Expense summary">
+      <article class="summary-card">
+        <p>Total Spent</p>
+        <h2 id="totalSpent">₹0.00</h2>
+      </article>
+      <article class="summary-card">
+        <p>This Month</p>
+        <h2 id="monthlySpent">₹0.00</h2>
+      </article>
+      <article class="summary-card">
+        <p>Transactions</p>
+        <h2 id="transactionCount">0</h2>
+      </article>
+    </section>
+
+    <section class="panel budget-panel">
+      <h2>Monthly Budget</h2>
+      <form id="budgetForm" class="budget-form">
+        <label for="budgetAmount">Set your budget (₹)</label>
+        <div class="inline-form">
+          <input id="budgetAmount" type="number"
+            min="0" step="100" placeholder="e.g. 10000" required>
+          <button type="submit" class="secondary-btn">Set Budget</button>
+        </div>
+      </form>
+      <p id="budgetMessage" aria-live="polite">Set a budget to get started.</p>
+    </section>
+
+    <section class="content-grid">
+      <div class="panel">
+        <h2 id="formHeading">Add New Expense</h2>
+
+        <form id="expenseForm">
+          <label for="title">Expense title</label>
+          <input id="title" type="text" maxlength="60"
+            placeholder="e.g. Groceries" required>
+
+          <label for="amount">Amount (₹)</label>
+          <input id="amount" type="number" min="0"
+            step="100" placeholder="e.g. 250" required>
+
+          <label for="category">Category</label>
+          <select id="category" required>
+            <option value="">Choose category</option>
+            <option>Food</option>
+            <option>Travel</option>
+            <option>Shopping</option>
+            <option>Bills</option>
+            <option>Education</option>
+            <option>Health</option>
+            <option>Other</option>
+          </select>
+
+          <label for="date">Date</label>
+          <input id="date" type="date" required>
+
+          <label for="description">Description (optional)</label>
+          <textarea id="description" rows="3"
+            maxlength="200" placeholder="Add a note..."></textarea>
+
+          <button id="saveExpense" type="submit" class="primary-btn">
+            + Add Expense
+          </button>
+          <button id="cancelEdit" type="button"
+            class="secondary-btn hidden">Cancel Edit</button>
+        </form>
+      </div>
+
+      <div class="panel">
+        <div class="list-heading">
+          <h2>Transactions</h2>
+          <span id="listCount">0 records</span>
+        </div>
+
+        <div class="filters">
+          <label for="filterCategory">Category</label>
+          <select id="filterCategory">
+            <option value="All">All categories</option>
+            <option>Food</option>
+            <option>Travel</option>
+            <option>Shopping</option>
+            <option>Bills</option>
+            <option>Education</option>
+            <option>Health</option>
+            <option>Other</option>
+          </select>
+
+          <label for="filterMonth">Month</label>
+          <input id="filterMonth" type="month">
+
+          <label for="sortBy">Sort by</label>
+          <select id="sortBy">
+            <option value="newest">Newest first</option>
+            <option value="oldest">Oldest first</option>
+            <option value="high">Amount: high to low</option>
+            <option value="low">Amount: low to high</option>
+          </select>
+        </div>
+<!-- Import and Export Expenses -->
+<div class="data-actions">
+    <button id="exportJsonBtn" type="button" class="secondary-btn">
+        Export JSON
+    </button>
+
+    <button id="importJsonBtn" type="button" class="secondary-btn">
+        Import JSON
+    </button>
+
+    <input
+        id="importJsonInput"
+        type="file"
+        accept=".json,application/json"
+        hidden
+    >
+</div>
+
+<div id="dataMessage" aria-live="polite"></div>
+        <div id="expenseList" class="expense-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>SpendWise ©️ 2026 | Manage money mindfully.</p>
+  </footer>
+
+</body>
+</html>
